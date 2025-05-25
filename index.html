@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Choose your crypto</label>
+
+    <select>
+        <option>BTC</option>
+        <option>SOL</option>
+    </select>
+
+    <label id="display_value">Current BTC value: </label>
+    <button onclick="get_data()" >Check Value</button><br>
+
+    <label>Invest?</label>
+    <input type="text" placeholder="Enter amount to deposit">
+    <button>Invest</button><br>
+
+    <p>
+        Your Current balance = $0 <br>
+        Invested money = $0<br>
+        Profit/Loss = $0
+    </p>
+
+    <label>Withdraw?</label>
+    <input type="text" placeholder="Enter amount to Withdraw">
+    <button>Withdraw</button><br>
+
+    <!-- """makes a scrollable area""" -->
+    <h2>Transaction History</h2>
+    <div id="lol" style="overflow-y:scroll; height:400px;"></div>
+
+    <!-- Scripts -->
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</body>
+</html>
