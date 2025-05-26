@@ -1,29 +1,60 @@
-const api_key = '0cdfb6ef-cc38-4a44-8c5f-68c5fd4c096c';
+//another problem is that i can't use node js module in browser so I do need to learn backend node js to make thia project more usable
 
-const axios = require('axios');
+const fs = require('fs');
 
-const symbol = 'BTC'; 
+function get_api_key(callback) {
+    fs.readFile('apikeys.txt', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error:', err);
+            callback(null);
+            return;
+        }
+        callback(data.trim());
+    });
+}
 
-new Promise(async (resolve, reject) => {
-    let response = null;
-    try {
-        response = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest`, {
-            params: {
-                symbol: symbol
-            },
-            headers: {
-                'X-CMC_PRO_API_KEY': api_key,
-            },
-        });
-    } catch (ex) {
-        console.error('API call error:', ex.message);
-        reject(ex);
+get_api_key((apiKey) => {
+    if (apiKey) {
+        console.log("API Key:", apiKey);
+    }
+});
+
+
+//problem is client side fetching of crypto data is not allowed so I need to make a proxy server using express and node js
+async function fetchCryptoData() {
+    const symbol = 'BTC';
+    var output = '';
+
+    const api_key = get_api_key();
+    console.log(api_key);
+
+    if (!symbol) {
+        alert('Please enter a cryptocurrency symbol (e.g., BTC)');
         return;
     }
 
-    if (response) {
-        const json_data = response.data;
-        console.log(json_data);
-        resolve(json_data);
+    const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${encodeURIComponent(symbol)}`;
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'X-CMC_PRO_API_KEY': api_key,
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        output = JSON.stringify(data, null, 2);
+        console.log(output);
+    } catch (error) {
+            output = 'Error fetching data: ' + error.message;
+            console.log(output)
+            console.error('Fetch error:', error);
     }
-});
+}
+
+fetchCryptoData();
