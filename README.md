@@ -1,0 +1,1 @@
+So this is virtual bitcoin investor where you can invest you money in biycoin[D[D[D[t[D[D[D[D[D[D[C[2~[ v[2~[2~[D[D[D[D[D[Cr vitual money in bitcoin [D[D[D[D[D[D[D[D[D real life bitcoin price.
