@@ -152,7 +152,7 @@ function updateBalanceDisplay(arr) {
 
     const last = arr[arr.length - 1];
     if (!last) {
-        balance_elem.textContent = "0 BTC / 0 USDT";
+        balance_elem.textContent = "0 BTC / 0 INR";
         return;
     }
 

@@ -1,4 +1,5 @@
 //declaration of modules
+//declaration of modules
 const axios = require('axios');
 const path = require('path');
 
@@ -43,6 +44,12 @@ app.get('/', async (req, res) => {
       console.error('Error fetching BTC price:', error.message);
       res.render('index', { BTC_curr_price: 'Error fetching price' });
     }
+});
+
+//live update code in script.js document
+app.get('/api/btc-price', async (req,res) => {
+  const price = await fetch_btc_price();
+  res.json({price})
 });
 
 //live update code in script.js document
