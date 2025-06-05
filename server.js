@@ -1,12 +1,16 @@
 //declaration of modules
+//declaration of modules
 const axios = require('axios');
 const path = require('path');
+const path = require('path');
 
+//declaration of important constants
 //declaration of important constants
 const apikey = '0cdfb6ef-cc38-4a44-8c5f-68c5fd4c096c';
 const symbol = 'BTC';
 const currency = 'INR';
 
+//declaration of some functions
 //declaration of some functions
 async function fetch_btc_price() {
   try {
@@ -24,6 +28,7 @@ async function fetch_btc_price() {
   }
 }
 
+// server.js setup
 // server.js setup
 const express = require('express');
 const cors = require('cors');
@@ -43,6 +48,12 @@ app.get('/', async (req, res) => {
       console.error('Error fetching BTC price:', error.message);
       res.render('index', { BTC_curr_price: 'Error fetching price' });
     }
+});
+
+//live update code in script.js document
+app.get('/api/btc-price', async (req,res) => {
+  const price = await fetch_btc_price();
+  res.json({price})
 });
 
 //live update code in script.js document
