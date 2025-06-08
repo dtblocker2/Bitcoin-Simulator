@@ -1,10 +1,11 @@
 //declaration of modules
 const axios = require('axios');
 const path = require('path');
-const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config()
 
 //declaration of important constants
-const apikey = '0cdfb6ef-cc38-4a44-8c5f-68c5fd4c096c';
+const apikey = process.env['api_key'];
 const symbol = 'BTC';
 const currency = 'INR';
 
@@ -37,7 +38,7 @@ app.get('/', async (req, res) => {
   const BTC_curr_price = await fetch_btc_price(); // used await to remove error or fetch_btc_price function return object and nit string
   try {
     // Serve static files from the 'public' directory
-      app.use(express.static(path.join(__dirname, 'public')));
+      app.use(express.static(path.join(__dirname, '/public')));
       //above will be executed only after getting value of BTC to avoid blank response
       res.render('index', { BTC_curr_price, currency });
     } catch (error) {
