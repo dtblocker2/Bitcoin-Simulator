@@ -57,27 +57,31 @@ function get_time_of_transaction() {
     );
 }
 
-function cookieToJSON(cookieName = "data") {
-    const cookieStr = document.cookie;
-    const match = cookieStr.match(
-        new RegExp("(^|;)\\s*" + cookieName + "\\s*=\\s*([^;]+)")
-    );
-    if (!match) return [];
+function cookieToJSON() {
+    const cookieStr = localStorage.getItem('coin_data');
+    // const match = cookieStr.match(
+    //     new RegExp("(^|;)\\s*" + cookieName + "\\s*=\\s*([^;]+)")
+    // );
+    if (!cookieStr) return [];
     try {
-        return JSON.parse(decodeURIComponent(match[2]));
+        p = JSON.parse(cookieStr)
+        return p;
     } catch (e) {
         return [];
     }
 }
 
-function JsontoCookie(arr, cookieName = "data") {
+function JsontoCookie(arr,) {
     const jsonStr = JSON.stringify(arr);
-    document.cookie = `${cookieName}=${encodeURIComponent(jsonStr)}; path=/`;
+    localStorage.setItem('coin_data',jsonStr);
 }
 
 function buy_BTC(arr, amount) {
     amount = parseFloat(amount);
-    if (isNaN(amount) || amount <= 0) return;
+    if (isNaN(amount) || amount <= 0) {
+        alert('enter valid input');
+        return
+    };
 
     const transaction_id = arr.length + 1;
     const transaction_type = "deposit";
@@ -105,7 +109,17 @@ function buy_BTC(arr, amount) {
 
 function sell_BTC(arr, amount) {
     amount = parseFloat(amount);
-    if (isNaN(amount) || amount <= 0) return;
+    const last = transaction_history[transaction_history.length-1];
+    if (!last) {
+        alert('insufficient funds');
+        return
+    }
+    const balance = last.BTC_purchased;
+    console.log(balance);
+    if (isNaN(amount) || amount <= 0 || (balance-amount) < 0) {
+        alert('enter valid input')
+        return
+    };
 
     const transaction_id = arr.length + 1;
     const transaction_type = "sell";
@@ -172,6 +186,12 @@ function update_balance_display(arr) {
     profit >= 0 ? profit_loss.innerHTML = `<span style = "color:green">${profit}  INR </span>`: profit_loss.innerHTML = `<span style = "color:red">${profit}  INR </span>`
 };
 
+function clear_transaction_history() {
+    localStorage.removeItem('coin_data');
+    transaction_history = cookieToJSON()
+    displayTransactions(transaction_history)
+    alert('successfully deleted data')
+}
 
 //main function of the document
 async function main() {
