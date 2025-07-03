@@ -40,17 +40,12 @@ app.get('/', async (req, res) => {
     // Serve static files from the 'public' directory
       app.use(express.static(path.join(__dirname, '/public')));
       //above will be executed only after getting value of BTC to avoid blank response
-      res.render('index', { BTC_curr_price, currency });
+      let exported_value = (typeof BTC_curr_price === 'number' && !isNaN(BTC_curr_price)) ? BTC_curr_price.toFixed(3) : 'fetching...' ;
+      res.render('index', { exported_value, currency });
     } catch (error) {
       console.error('Error fetching BTC price:', error.message);
       res.render('index', { BTC_curr_price: 'Error fetching price' });
     }
-});
-
-//live update code in script.js document
-app.get('/api/btc-price', async (req,res) => {
-  const price = await fetch_btc_price();
-  res.json({price})
 });
 
 //live update code in script.js document

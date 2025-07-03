@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Simulator</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" >
+    <link href="/style.css" rel="stylesheet" type="text/css" >
+</head>
+<body>
+    <h1 class="BTC_display">Current BTC Price: <span id="BTC_curr_price"><%= BTC_curr_price %></span></h1>
+    <h3>Enter <%= currency %> to deposit: </h3>
+    <input type="text" id="usdt_deposited" placeholder="<%= currency %>"><input type="button" id="usdt_deposited_btn" value="Enter amount" onclick="BTC_purchased_display_func()">
+    <br>
+    <h3>Bitcoin Purchased: <span id="BTC_purchased_display"></span></h3><br>
+
+    <h3>Enter BTC to withdraw: </h3>
+    <input type="text" id="btc_withdrawn" placeholder="BTC"><input type="button" id="btc_withdrawn_btn" value="Enter amount" onclick="BTC_sold_display_func()">
+    <br>
+    <h3>Bitcoin Sold: <span id="BTC_sold_display"></span></h3><br>
+
+    <div id="current_balance"></div>
+
+    <br>
+
+    <h2>Transaction History</h2>
+    <table border="1" id="transaction_table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Amount (<%= currency %>)</th>
+                <th>BTC Price</th>
+                <th>Total Balance</th>
+                <th>BTC</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="transaction_body">
+        </tbody>
+    </table>
+
+
+    <!-- Scripts -->
+    <script src="/script.js"></script>
+</body>
+</html>
