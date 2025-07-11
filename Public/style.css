@@ -1,15 +1,155 @@
+:root {
+    --blue: #355070;
+    --purple: #6d597a;
+    --maroon: #b56576;
+    --red: #e56b6f;
+    --orange: #eaac8b;
+
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #fff;
 }
 
-html {
-    height: 100%;
-}
+
 
 body {
-    height: 100%;
-    background: linear-gradient(45deg,#1a1a1a,#3f0c90);
+    height: 100vh;
+    width: 100vw;
+    background-color: #293e57;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.header .name h1 {
+    background: linear-gradient(145deg,var(--red),var(--orange));
+    width: 300px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    height:max-content;
+}
+
+.header .name p {
+    margin: 0;
+    color:ghostwhite;
+}
+
+.header {
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px;
+    width: 100%;
+    background-color: #355070;
+    padding: 10px;
+    margin: 0;
+    box-shadow: 0 -8px 15px rgba(0, 0, 0, 0.85);
+    
+    /* box-shadow: 0 8px 15px rgba(0,0,0,0.85); */
+}
+
+.header .content {
+    margin: 0 80px;
+}
+
+.dashboard {
+    margin: 20px 80px;
+}
+
+/* below is used to affect direct child */
+.dashboard > div {
+    background-color: #355070;
+    border-radius: 10px;
+    padding: 10px;
+    display: grid;
+    box-shadow: 0 10px 20px #0000001f;
+    margin-bottom: 50px;
+}
+
+.dashboard .cryptos {
+    width: 100%;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.dashboard .cryptos div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #293e57;
+    margin: 20px;
+    height: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px #0000001f;
+}
+
+.portfolio {
+    grid-template-columns: repeat(2,1fr);
+    font-size: 15px;
+    width: 350px;
+    justify-self: right;
+}
+
+.portfolio_temp {
+    font-size: 15px;
+    width: 350px;
+    justify-self: right;
+}
+
+.dashboard > .portfolio > .left {
+    text-align: left;
+    color: #ffffffcb;
+}
+
+.dashboard > .portfolio > .right {
+    text-align: right;
+}
+
+.portfolio div {
+    margin: 10px;
+}
+
+.recentTrades > .transactions {
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin: 10px 0;
+}
+
+.transactions > .bottom {
+    color: #ffffffbf;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #fff;
+}
+
+.transactions > .right {
+    text-align: right;
+}
+
+.buySellBtc {
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 930px;
+    padding: 10px;
+}
+
+.buySellBtc div {
+    margin: 20px;
+}
+
+.buySellBtc .sell {
+    text-align: right;
+}
+
+.buySellBtc input {
+    background-color: #293e57;
+    color: #eaac8b;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 15px;
 }
