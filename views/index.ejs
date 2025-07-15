@@ -4,75 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bitcoin Simulator</title>
-    <link href="/style.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body>
-    <h1 class="BTC_display">
-      Current BTC Price: <span id="BTC_curr_price"><%= exported_value %></span>
-    </h1>
-    <h3>Enter <%= currency %> to deposit:</h3>
-    <input
-      type="text"
-      id="usdt_deposited"
-      placeholder="<%= currency %>"
-    /><input
-      type="button"
-      id="usdt_deposited_btn"
-      value="Buy BTC"
-      onclick="BTC_purchased_display_func()"
-    />
-    <br />
-    <h3>Bitcoin Purchased: <span id="BTC_purchased_display"></span></h3>
-    <br />
+  <body class="bg-gray-900 text-white">
+    <div class="header">
+      <div class="content">
+        <div class="name">
+          <h1>Bitcoin Simulator</h1>
+          <p>Made By Dtblocker02</p>
+        </div>
+      </div>
+    </div>
 
-    <h3>Enter BTC to withdraw:</h3>
-    <input type="text" id="btc_withdrawn" placeholder="BTC" /><input
-      type="button"
-      id="btc_withdrawn_btn"
-      value="Spend BTC"
-      onclick="BTC_sold_display_func()"
-    />
-    <br />
-    <h3>Bitcoin Sold: <span id="BTC_sold_display"></span></h3>
-    <br />
+    <div class="dashboard">
+      <div class="cryptos">
+        <div>BTC</div>
+        <div>ETH</div>
+        <div>BNB</div>
+        <div>SOL</div>
+      </div>
 
-    Real time balance:
-    <div id="current_balance"></div>
-    Profit Loss:
-    <div id="profit_loss"></div>
-    <br />
+      <div class="portfolio">
+        <div class="">Portfolio</div>
+        <div class="right">Refresh Icon</div>
+        <div class="left">Available Cash</div>
+        <div class="right">$2,000,000</div>
+        <div class="left">Total Value</div>
+        <div class="right">$3,000,000</div>
+      </div>
 
-    <h2>Transaction History</h2>
-    <table border="1" id="transaction_table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Type</th>
-          <th>Transaction Amount (<%= currency %>)</th>
-          <th>BTC Price</th>
-          <th>INR Spent</th>
-          <th>BTC Balance</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-      <tbody id="transaction_body"></tbody>
-    </table>
-    <br />
-    <input
-      type="button"
-      onclick="clear_transaction_history()"
-      value="Reset Transaction"
-    />
+      <div class="recentTrades portfolio_temp">
+        Recent Trades
+        <div class="transactions">
+          <div class="left top">BTC</div>
+          <div class="right top">$69</div>
+          <div class="left bottom">Jul 12, 00:00</div>
+          <div class="right bottom">@ $117,349.96</div>
+        </div>
+      </div>
 
-    <!-- Chart -->
-    <div>
-      <canvas id="myChart" style="width: 100%; max-width: 700px"></canvas>
+      <div class="buySellBtc">
+        <div class="buy">
+          Deposit (INR)
+          <input type="text" name="" id="" />
+        </div>
+        <div class="sell">
+          Withdraw (INR)
+          <input type="text" name="" id="" />
+        </div>
+      </div>
+
+      <!-- <div class="chart">
+
+      </div> -->
+
     </div>
 
     <!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-    <script src="/chart_tut.js"></script>
   </body>
 </html>

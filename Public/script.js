@@ -1,4 +1,4 @@
-//Declaration of element of document
+/* //Declaration of element of document
 const USDT_deposited_btn = document.getElementById('usdt_deposited_btn');
 const USDT_deposited = document.getElementById('usdt_deposited');
 const BTC_purchased_display = document.getElementById('BTC_purchased_display');
@@ -216,3 +216,6 @@ async function main() {
 }
 
 main();
+ */
+
+const leverage = document.getElementById('leverage')
