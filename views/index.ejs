@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="dashboard">
       <div class="cryptos">
         <div>BTC</div>
@@ -23,7 +23,12 @@
         <div>BNB</div>
         <div>SOL</div>
       </div>
-
+      
+      <div class="graph">
+        <div class="chartWrapper">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
       <div class="portfolio">
         <div class="">Portfolio</div>
         <div class="right">Refresh Icon</div>
@@ -32,7 +37,7 @@
         <div class="left">Total Value</div>
         <div class="right">$3,000,000</div>
       </div>
-
+      
       <div class="recentTrades portfolio_temp">
         Recent Trades
         <div class="transactions">
@@ -43,23 +48,33 @@
         </div>
       </div>
 
-      <div class="buySellBtc">
+      <div class="investBTC">
         <div class="buy">
-          Deposit (INR)
-          <input type="text" name="" id="" />
+          Amount:
+          <input type="text" name="" placeholder="Enter Amount" id="" />
         </div>
-        <div class="sell">
-          Withdraw (INR)
-          <input type="text" name="" id="" />
+        <div class="leverage" id="leverage">
+          <span>Leverage:</span>
+          <div class="leverage-options">
+            <button type="button" class="radioBtn">1 x</button>
+            <button type="button" class="radioBtn">5 x</button>
+            <button type="button" class="radioBtn">10 x</button>
+            <button type="button" class="radioBtn">25 x</button>
+            <button type="button" class="radioBtn">50 x</button>
+            <button type="button" class="radioBtn">100 x</button>
+          </div>
+
+        </div>
+        <div class="lockTrade">
+          <button style="background-color: #eaac8b;">Long</button>
+          <button style="background-color: #b56576;">Short</button>
         </div>
       </div>
-
-      <!-- <div class="chart">
-
-      </div> -->
 
     </div>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart_tut.js"></script>
   </body>
 </html>

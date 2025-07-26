@@ -1,0 +1,48 @@
+--------------------------------------------- MISTAKE 1 -------------------------------------------------------------
+### Primary Issues in Your Code
+1. **btc_price_final scoping problem:**  
+   The variable `btc_price_final` is declared with `var` inside the first `if`, so it only exists in that block. In the `else if` and `else` branches, it's used without being declared or initialized, causing a ReferenceError after the first run.
+2. **No initialization on subsequent iterations:**  
+   On every `requestIteration != 0`, `btc_price_final` isn't being set—it relies on a value from a previous scope that doesn't exist.
+3. **Redundant code for price update:**  
+   The same update logic is repeated; you can streamline the way you update the price (e.g., always perturb the value after the first fetch).
+4. **Asynchronous update pattern:**  
+   To keep your graph updating, use a `setInterval` to periodically call `update_graph()`[5][12].
+
+### How To Fix It
+#### **1. Define btc_price_final outside the function**
+Place `let btc_price_final;` (or `var`, but `let` is better) **outside** the `update_graph` function so it persists across calls.
+#### **2. Always initialize btc_price_final at least once**
+Only fetch from the API if it hasn't been set yet, then update it locally in subsequent runs.
+#### **3. Use setInterval for periodic updates**
+Call your update function every second (or any interval you need).
+#### **4. Example Corrected Code**
+
+```javascript
+let btc_price_final = null; $$$IMPORTANT
+let requestIteration = 0;
+
+async function update_graph() {
+  if (btc_price_final === null) {
+    const btc_price = await fetch("/api/btc-price");
+    const data = await btc_price.json();
+    btc_price_final = parseFloat(data.price);
+    console.log(btc_price_final);
+  } else {
+    btc_price_final += Math.random() * 2 - 1;  // Simulate random walk
+  }
+}
+```
+This ensures:
+- **btc_price_final** persists and updates every interval
+- On first call, you fetch the real price; later, you simulate updates
+- The function is suitable for **real-time graphs**
+
+### Best Practices for Real-Time APIs
+- Use `setInterval` for repeated updates, not `setTimeout` (which only runs once)[12].
+- Update the value/state in a way that is **visible to the rest of your code** (for direct DOM or chart library updates). //IMPORTANT
+
+### Reference on Asynchronous Patterns
+> "The purpose of async/await is to simplify the syntax necessary to consume promise-based APIs. The behavior ... is similar to combining generators and promises."  
+
+--------------------------------------------- MISTAKE 2 -------------------------------------------------------------

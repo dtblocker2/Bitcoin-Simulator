@@ -34,19 +34,21 @@ const app = express();
 app.use(cors()); // allow requests from browser
 app.set('view engine', 'ejs');
 
-// app.get('/', async (req, res) => {
-//   const BTC_curr_price = await fetch_btc_price(); // used await to remove error or fetch_btc_price function return object and nit string
-//   try {
-//     // Serve static files from the 'public' directory
-//       app.use(express.static(path.join(__dirname, '/public')));
-//       //above will be executed only after getting value of BTC to avoid blank response
-//       let exported_value = (typeof BTC_curr_price === 'number' && !isNaN(BTC_curr_price)) ? BTC_curr_price.toFixed(3) : 'fetching...' ;
-//       res.render('index', { exported_value, currency });
-//     } catch (error) {
-//       console.error('Error fetching BTC price:', error.message);
-//       res.render('index', { BTC_curr_price: 'Error fetching price' });
-//     }
-// });
+app.get('/', async (req, res) => {
+  const BTC_curr_price = await fetch_btc_price(); // used await to remove error or fetch_btc_price function return object and nit string
+  try {
+    // Serve static files from the 'public' directory
+      app.use(express.static(path.join(__dirname, '/public')));
+      //above will be executed only after getting value of BTC to avoid blank response
+      let exported_value = (typeof BTC_curr_price === 'number' && !isNaN(BTC_curr_price)) ? BTC_curr_price.toFixed(3) : 'fetching...' ;
+      // res.render('index', { exported_value, currency });
+      res.render('index');
+    } catch (error) {
+      console.error('Error fetching BTC price:', error.message);
+      // res.render('index', { BTC_curr_price: 'Error fetching price' });
+      res.render('index');
+    }
+});
 
 //live update code in script.js document
 app.get('/api/btc-price', async (req,res) => {
